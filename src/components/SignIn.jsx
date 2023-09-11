@@ -49,6 +49,7 @@ function SignIn({ token, setToken }) {
       navigate("/todo");
     } catch (err) {
       setIsLoading(false);
+      alert("登入失敗");
       setToken("登入失敗: " + err.message);
       setForm({
         // 清空输入框
@@ -56,6 +57,17 @@ function SignIn({ token, setToken }) {
         email: "",
         password: "",
       });
+    }
+  };
+  // 鍵盤enter新增事項
+  const handleInputKeyPress = (event) => {
+    if (event.key === "Enter") {
+      if (form.email === "" || form.password === "") {
+        alert("請輸入帳號密碼");
+      } else {
+        signIn();
+        alert("登入成功");
+      }
     }
   };
 
@@ -96,6 +108,7 @@ function SignIn({ token, setToken }) {
             value={form.email}
             onChange={handleInput}
             placeholder="請輸入Email"
+            onKeyDown={handleInputKeyPress}
           />
           {inputErrors.email && (
             <div className="text-danger">此欄位不可為空</div>
@@ -111,6 +124,7 @@ function SignIn({ token, setToken }) {
             value={form.password}
             onChange={handleInput}
             placeholder="請輸入密碼"
+            onKeyDown={handleInputKeyPress}
           />
           {inputErrors.password && (
             <div className="text-danger">此欄位不可為空</div>
@@ -124,7 +138,6 @@ function SignIn({ token, setToken }) {
           >
             登入
           </button>
-          <p className="text-danger">{token}</p>
 
           <NavLink
             className="formControls_btnLink"
@@ -133,6 +146,7 @@ function SignIn({ token, setToken }) {
           >
             註冊帳號
           </NavLink>
+          <p className="mt-3 text-danger">{token}</p>
         </form>
       </div>
     </div>

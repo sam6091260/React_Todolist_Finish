@@ -3,6 +3,6 @@ import react from "@vitejs/plugin-react";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: process.env.NODE_ENV === "production" ? "React_todolist_final" : "/",
+  base: process.env.NODE_ENV === "production" ? "React_Todolist_Finish" : "/",
   plugins: [react()],
 });

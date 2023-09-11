@@ -454,6 +454,7 @@ nav ul a span {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  justify-content: space-between;
   border-bottom: 1px solid #e5e5e5;
   padding-bottom: 15px;
   color: #333333;
@@ -468,11 +469,15 @@ nav ul a span {
   margin-right: 16px;
 }
 
+.todoList_input:hover {
+  cursor: pointer;
+}
+
 .todoList_list .todoList_items .todoList_input:checked ~ span {
   color: #9F9A91;
   text-decoration: line-through;
-  -webkit-transition: all 0.4s ease-in-out;
-  transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .todoList_list .todoList_items li {

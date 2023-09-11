@@ -50,9 +50,11 @@ function SignUp() {
       // get 路徑 headers
       const res = await axios.post(`${VITE_APP_HOST}/users/sign_up`, form);
       setMessage("註冊成功. UID: " + res.data.uid);
+      alert("註冊成功");
       navigate("/"); // 當登入成功後轉址到登入頁
     } catch (err) {
-      setMessage("註冊失敗:" + err.message);
+      alert("註冊失敗");
+      setMessage("註冊失敗: " + err.message);
     }
   };
 
@@ -124,6 +126,7 @@ function SignUp() {
               id="password"
               value={form.password}
               name="password"
+              type="password"
               onChange={handleInput}
               placeholder="請輸入密碼"
             />
@@ -135,9 +138,10 @@ function SignUp() {
             </label>
             <input
               className="formControls_input"
+              id="checkPassword"
               value={form.checkPassword}
               name="checkPassword"
-              id="checkPassword"
+              type="password"
               onChange={handleInput}
               placeholder="請再次輸入密碼"
             />
@@ -151,7 +155,7 @@ function SignUp() {
             >
               註冊帳號
             </button>
-            <p>{message}</p>
+
             <NavLink
               className="formControls_btnLink"
               style={{ textDecoration: "none" }}
@@ -159,6 +163,7 @@ function SignUp() {
             >
               登入
             </NavLink>
+            <p className="mt-3 text-danger">{message}</p>
           </form>
         </div>
       </div>

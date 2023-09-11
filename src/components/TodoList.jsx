@@ -80,6 +80,13 @@ const TodoList = ({ token, setToken }) => {
     setTabStatus("all");
   };
 
+  // 鍵盤enter新增事項
+  const handleInputKeyPress = (event) => {
+    if (event.key === "Enter") {
+      addTodo(); // 调用添加待办事项的函数
+    }
+  };
+
   // 刪除待辦資訊
   const deleteTodo = async (id) => {
     await axios.delete(`${VITE_APP_HOST}/todos/${id}`, {
@@ -114,6 +121,7 @@ const TodoList = ({ token, setToken }) => {
       if (e.status) {
         deleteTodo(e.id);
       }
+      alert("刪除成功");
     });
   };
 
@@ -122,6 +130,7 @@ const TodoList = ({ token, setToken }) => {
     // 清除存储 Token 的 Cookie
     document.cookie = "Todo=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
     setToken("");
+    alert("登出成功");
     navigate("/");
   };
 
@@ -132,7 +141,7 @@ const TodoList = ({ token, setToken }) => {
           <img src="https://upload.cc/i1/2022/03/23/8vTzYG.png" alt="title" />
         </a>
         <div>
-          <a className="fw-bold text-dark" href="#">
+          <a className="fw-bold text-dark" href="#" onClick={signOut}>
             <span>{nickName}的代辦 </span>
           </a>
           <a href="#" className="mx-2 text-dark" onClick={signOut}>
@@ -147,6 +156,7 @@ const TodoList = ({ token, setToken }) => {
             <input
               value={newTodo}
               onChange={(e) => setNewTodo(e.target.value)}
+              onKeyDown={handleInputKeyPress}
               placeholder="新增待辦事項"
             />
             <a
@@ -223,13 +233,16 @@ const TodoList = ({ token, setToken }) => {
                   return (
                     <li key={todo.id}>
                       <label className="todoList_label">
-                        <input
-                          className="todoList_input"
-                          type="checkbox"
-                          checked={todo.status}
-                          onChange={() => finishTodo(todo.id)}
-                        />
-                        <span>{todo.content}</span>
+                        <div className="d-flex justify-content-center">
+                          <input
+                            className="todoList_input"
+                            type="checkbox"
+                            checked={todo.status}
+                            onChange={() => finishTodo(todo.id)}
+                          />
+                          <span>{todo.content}</span>
+                        </div>
+
                         <a
                           href="#"
                           onClick={(e) => {
