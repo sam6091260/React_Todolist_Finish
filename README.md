@@ -1,4 +1,15 @@
-# React + Vite
+# React + Vite線上代辦事項服務
+
+
+註冊，登入，代辦事項狀態處理
+
+- React + Vite
+
+- React Hooks
+
+- Axios串接API
+
+- RWD
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
